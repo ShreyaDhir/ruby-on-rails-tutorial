@@ -2,13 +2,40 @@
 
 <h1>Friends List</h1>
 
-<div id="friends">
-  <% @friends.each do |friend| %>
-    <%= render friend %>
-    <p>
-      <%= link_to "Show this friend", friend %>
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New friend", new_friend_path %>
+<table class="table table-striped table-hover table-bordered">
+  <thead thead="thead-dark">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Twitter</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @friends.each do |friend| %>
+    
+    <tr>
+      <td><%= friend.first_name %></td>
+      <td><%= friend.last_name %></td>
+      <td><%= friend.email %></td>
+      <td><%= friend.phone %></td>
+      <td><%= friend.twitter %></td>
+      <td>
+        <%= link_to "Show", friend, class: "btn btn-outline-info btn-sm" %>
+      </td>
+
+      <td>
+        <%= link_to 'Edit', friend, method: :edit,class: "btn btn-outline-primary btn-sm" %>
+      </td>
+
+      <td><%= link_to 'Delete', friend, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to "New friend", new_friend_path, class: "btn btn-outline-success btn-sm"  %>
